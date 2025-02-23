@@ -1,35 +1,36 @@
-const Control = ({ tool, setTool }: any) => {
-  const handleOnChange = (e: any) => {
-    setTool(e.target.value);
-  };
+import { ControlProps } from '../types'
 
-  return (
-    <div style={{ position: "absolute", top: 0 }}>
-      <div>
-        <input
-          type="radio"
-          id="cursor"
-          name="control"
-          value="cursor"
-          checked={tool === "cursor"}
-          onChange={handleOnChange}
-        />
-        <label htmlFor="cursor">Взаимодействие</label>
-      </div>
+const Control = ({ tool, setTool }: ControlProps) => {
+	return (
+		<div
+			style={{
+				position: 'absolute',
+				top: 0,
+				padding: '10px',
+				background: 'rgba(255, 255, 255, 0.9)',
+				borderRadius: '5px',
+			}}
+		>
+			<label>
+				<input
+					type='radio'
+					value='cursor'
+					checked={tool === 'cursor'}
+					onChange={(e) => setTool(e.target.value as ControlProps['tool'])}
+				/>
+				Взаимодействие
+			</label>
+			<label>
+				<input
+					type='radio'
+					value='shape'
+					checked={tool === 'shape'}
+					onChange={(e) => setTool(e.target.value as ControlProps['tool'])}
+				/>
+				Добавление
+			</label>
+		</div>
+	)
+}
 
-      <div>
-        <input
-          type="radio"
-          id="shape"
-          name="control"
-          value="shape"
-          checked={tool === "shape"}
-          onChange={handleOnChange}
-        />
-        <label htmlFor="shape">Добавление</label>
-      </div>
-    </div>
-  );
-};
-
-export default Control;
+export default Control
